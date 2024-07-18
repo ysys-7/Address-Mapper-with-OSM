@@ -56,6 +56,10 @@ A: 住所が正確に入力されていることを確認してください。�
 
 A: CSVファイルのエンコーディングがShift-JISであることを確認してください。他のエンコーディング形式では動作しない可能性があります。
 
+## サポートとフィードバック
+
+このプロジェクトはオープンソースであり、限られた時間の中で開発されています。バグ報告や機能リクエストについては、以下の方法でコミュニティと交流してください： - **Discussions**: 使用方法についての質問や他のユーザーとの議論を希望する場合は、[GitHub Discussions](https://github.com/ysys-7/Address-Mapper-with-OSM/discussions)をご利用ください。
+
 ## ライセンス
 
 Address Mapper with OSM (AMwO)はGNU General Public License v3.0で配布されています。詳しくはLICENSEファイルをご覧ください。
