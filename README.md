@@ -29,6 +29,12 @@ Address Mapper with OSM をローカルで使用するには、以下の手順�
 
 3. ウェブブラウザで`AMwO.html`を開く。
 
+## GitHub Pagesから直接開く方法
+
+以下のリンクを開いてください:
+
+[Address Mapper with OSM](https://ysys-7.github.io/Address-Mapper-with-OSM/AMwO.html)
+
 ## 使用方法
 
 1.施設名と住所のリストをカンマまたはタブで区切ってテキストエリアに入力します。
