@@ -23,9 +23,10 @@
 </head>
 <body>
     <div id="form">
-        <textarea id="addresses" rows="10" cols="100" placeholder="施設名と住所のリストを改行で分けて入力してください（施設名と住所の区切りはスペース、カンマ、またはタブ） ex:東京都庁,東京都新宿区西新宿２丁目８−１"></textarea><br>
+        <textarea id="addresses" rows="10" cols="100" placeholder="施設名と住所のリストを改行で分けて入力してください（施設名と住所の区切りはカンマ、またはタブ） ex:東京都庁,東京都新宿区西新宿２丁目８−１"></textarea><br>
         <button onclick="plotAddresses()">地図にプロット</button><br>
         CSVインポート(SJISのみ):<input type="file" id="csvFileInput" accept=".csv" />
+        <div id="progress"></div>
         <div id="errors"></div>
         <div id="warnings"></div>
     </div>
@@ -37,7 +38,7 @@
             var textarea = document.getElementById("addresses");
             var lines = textarea.value.split("\n");
             for (var i = 0; i < lines.length; i++) {
-                lines[i] = lines[i].replace(/^\s+/, "");
+                lines[i] = lines[i].replace(/^\t+/, "");
             }
             textarea.value = lines.join("\n");
         });
@@ -75,10 +76,16 @@
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
+        // 進行状況を表示する関数
+        function updateProgress(current, total) {
+            const progressElement = document.getElementById('progress');
+            progressElement.innerText = `処理中: ${current} / ${total}`;
+        }
+
         // 国土地理院ジオコーディング
         async function geocodeAddress(query, name) {
             const url = `https://msearch.gsi.go.jp/address-search/AddressSearch?q=${encodeURIComponent(query)}`;
-            await delay(1000);  // 負荷制限：1秒の遅延
+            await delay(500);  // サーバー負荷制限
             return fetch(url)
                 .then(response => response.json())
                 .then(data => {
@@ -98,8 +105,12 @@
             const warnings = [];
             const geocodeResults = [];
 
-            for (const line of lines) {
-                const parts = line.split(/[\s,]+/);
+           for (let i = 0; i < lines.length; i++) {
+//            for (const line of lines) {
+                const line = lines[i]; 
+                updateProgress(i + 1, lines.length);
+
+                const parts = line.split(/[\t,]+/);
                 const name = parts[0];
                 const address = parts.slice(1).join(' ');
                 if (address) {
@@ -129,6 +140,7 @@
             });
             document.getElementById('errors').innerText = errors.join('\n');
             document.getElementById('warnings').innerText = warnings.join('\n');
+            document.getElementById('progress').innerText = '完了';
         }
     </script>
 </body>
