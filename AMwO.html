@@ -666,7 +666,8 @@ copy of the Program in return for a fee.
     <div id="form">
         <textarea id="addresses" rows="10" cols="100" placeholder="施設名と住所のリストを改行で分けて入力してください（施設名と住所の区切りはカンマ、またはタブ） ex:東京都庁,東京都新宿区西新宿２丁目８−１"></textarea><br>
         <!-- あらかじめ施設と住所をテキストエリアに埋め込むには、上の textarea の中に記述してください -->
-        <button onclick="plotAddresses()">地図にプロット</button><br>
+        <button onclick="plotAddresses()">地図にプロット</button>
+        <button onclick="resetPage()">リセット</button><br>
         CSVインポート(SJISのみ):<input type="file" id="csvFileInput" accept=".csv" />
         <div id="progress"></div>
         <div id="errors"></div>
@@ -694,6 +695,11 @@ copy of the Program in return for a fee.
             }
             textarea.value = lines.join("\n");
         });
+
+        // リセット
+        function resetPage() {
+          location.reload();
+        }
 
         // CSVインポート
         document.getElementById("csvFileInput").addEventListener("change", function(event) {
@@ -749,6 +755,7 @@ copy of the Program in return for a fee.
                     }
                 });
         }
+        let latLngBounds = [];
 
         async function plotAddresses() {
             const input = document.getElementById('addresses').value;
@@ -758,7 +765,6 @@ copy of the Program in return for a fee.
             const geocodeResults = [];
 
            for (let i = 0; i < lines.length; i++) {
-//            for (const line of lines) {
                 const line = lines[i]; 
                 updateProgress(i + 1, lines.length);
 
@@ -786,6 +792,7 @@ copy of the Program in return for a fee.
             geocodeResults.forEach(result => {
                 if (result) {
                     const latlng = [result.lat, result.lon];
+                    latLngBounds.push(latlng);  // 各プロット地点を追加
                     const marker = L.marker(latlng).addTo(map)
                         .bindPopup(`<b>${result.name}</b><br>${result.query}`).openPopup();
                 }
@@ -793,6 +800,12 @@ copy of the Program in return for a fee.
             document.getElementById('errors').innerText = errors.join('\n');
             document.getElementById('warnings').innerText = warnings.join('\n');
             document.getElementById('progress').innerText = '完了';
+
+            // 地図の表示範囲をプロットされた地点全体が収まるように調整
+            if (latLngBounds.length > 0) {
+                const bounds = L.latLngBounds(latLngBounds);
+                map.fitBounds(bounds);
+            }            
         }
     </script>
 </body>
