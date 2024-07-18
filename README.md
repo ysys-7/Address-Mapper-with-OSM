@@ -19,7 +19,7 @@ Address Mapper with OSM (AMwO)は、OpenStreetMapを利用して住所を地図�
 
 # インストール方法
 
-Address Mapper with OSM をローカルで使用するには、以下の手順に従ってください:
+AMwO をローカルで使用するには、以下の手順に従ってください:
 
 1. リポジトリをクローンする:
    
@@ -70,7 +70,7 @@ A: CSVファイルのエンコーディングがShift-JISであることを確�
 
 # ライセンス
 
-Address Mapper with OSM (AMwO)はGNU General Public License v3.0で配布されています。詳しくはLICENSEファイルをご覧ください。
+AMwOはGNU General Public License v3.0で配布されています。詳しくはLICENSEファイルをご覧ください。
 
 # 原作者
 
