@@ -11,6 +11,12 @@ Address Mapper with OSM (AMwO)は、OpenStreetMapを使って地図上に住所�
 - シンプルで直感的なユーザーインターフェース
 - GNU GPL-3.0ライセンスの下、オープンソースで自由に配布可能
 
+## とりあえず使ってみる
+
+以下のリンクを開いてください:
+
+[Address Mapper with OSM](https://ysys-7.github.io/Address-Mapper-with-OSM/AMwO.html)
+
 ## インストール方法
 
 Address Mapper with OSM をローカルで使用するには、以下の手順に従ってください:
@@ -28,12 +34,6 @@ Address Mapper with OSM をローカルで使用するには、以下の手順�
    ```
 
 3. ウェブブラウザで`AMwO.html`を開く。
-
-## GitHub Pagesから直接開く方法
-
-以下のリンクを開いてください:
-
-[Address Mapper with OSM](https://ysys-7.github.io/Address-Mapper-with-OSM/AMwO.html)
 
 ## 使用方法
 
