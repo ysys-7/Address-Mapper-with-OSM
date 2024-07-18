@@ -58,7 +58,9 @@ A: CSVファイルのエンコーディングがShift-JISであることを確�
 
 ## サポートとフィードバック
 
-このプロジェクトはオープンソースであり、限られた時間の中で開発されています。バグ報告や機能リクエストについては、以下の方法でコミュニティと交流してください： - **Discussions**: 使用方法についての質問や他のユーザーとの議論を希望する場合は、[GitHub Discussions](https://github.com/ysys-7/Address-Mapper-with-OSM/discussions)をご利用ください。
+このプロジェクトはオープンソースであり、限られた時間の中で開発されています。バグ報告や機能リクエストについては、以下の方法でコミュニティと交流してください：
+
+**Discussions**: 使用方法についての質問や他のユーザーとの議論を希望する場合は、[GitHub Discussions](https://github.com/ysys-7/Address-Mapper-with-OSM/discussions)をご利用ください。
 
 ## ライセンス
 
