@@ -23,14 +23,47 @@
 </head>
 <body>
     <div id="form">
-        <textarea id="addresses" rows="10" cols="100" placeholder="施設名と住所を入力してください（スペース、カンマ、またはタブ区切り）"></textarea><br>
-        <button onclick="plotAddresses()">地図にプロット</button>
+        <textarea id="addresses" rows="10" cols="100" placeholder="施設名と住所を入力してください（スペース、カンマ、またはタブ区切り）">
+            東京都庁,東京都新宿区西新宿２丁目８−１
+        </textarea><br>
+        <button onclick="plotAddresses()">地図にプロット</button><br>
+        CSVインポート(SJISのみ):<input type="file" id="csvFileInput" accept=".csv" />
         <div id="errors"></div>
         <div id="warnings"></div>
     </div>
     <div id="map"></div>
 
+    <script>
+        // 先頭の空白行を削除
+        document.addEventListener("DOMContentLoaded", function() {
+            var textarea = document.getElementById("addresses");
+            var lines = textarea.value.split("\n");
+            for (var i = 0; i < lines.length; i++) {
+                lines[i] = lines[i].replace(/^\s+/, "");
+            }
+            textarea.value = lines.join("\n");
+        });
+
+        // CSVインポート
+        document.getElementById("csvFileInput").addEventListener("change", function(event) {
+            var file = event.target.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var arrayBuffer = e.target.result;
+                    var decoder = new TextDecoder("shift_jis");
+                    var content = decoder.decode(arrayBuffer);
+                    var lines = content.split("\n");
+                    var textarea = document.getElementById("addresses");
+                    textarea.value = lines.join("\n");
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        });
+    </script>
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    
     <script>
         const map = L.map('map').setView([35.682839, 139.759455], 10);
 
