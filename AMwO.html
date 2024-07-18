@@ -23,9 +23,7 @@
 </head>
 <body>
     <div id="form">
-        <textarea id="addresses" rows="10" cols="100" placeholder="施設名と住所を入力してください（スペース、カンマ、またはタブ区切り）">
-            東京都庁,東京都新宿区西新宿２丁目８−１
-        </textarea><br>
+        <textarea id="addresses" rows="10" cols="100" placeholder="施設名と住所のリストを改行で分けて入力してください（施設名と住所の区切りはスペース、カンマ、またはタブ） ex:東京都庁,東京都新宿区西新宿２丁目８−１"></textarea><br>
         <button onclick="plotAddresses()">地図にプロット</button><br>
         CSVインポート(SJISのみ):<input type="file" id="csvFileInput" accept=".csv" />
         <div id="errors"></div>
