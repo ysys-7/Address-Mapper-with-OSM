@@ -72,66 +72,65 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        function geocodeAddress(query, name) {
-            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`;
+        // 遅延関数
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // 国土地理院ジオコーディング
+        async function geocodeAddress(query, name) {
+            const url = `https://msearch.gsi.go.jp/address-search/AddressSearch?q=${encodeURIComponent(query)}`;
+            await delay(1000);  // 負荷制限：1秒の遅延
             return fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.length > 0) {
-                        return { lat: data[0].lat, lon: data[0].lon, name: name, query: query };
+                        const coordinates = data[0].geometry.coordinates;
+                        return { lat: coordinates[1], lon: coordinates[0], name: name, query: query };
                     } else {
                         return null;
                     }
                 });
         }
 
-        function plotAddresses() {
+        async function plotAddresses() {
             const input = document.getElementById('addresses').value;
             const lines = input.split('\n');
             const errors = [];
             const warnings = [];
-            const geocodePromises = [];
+            const geocodeResults = [];
 
-            lines.forEach(line => {
+            for (const line of lines) {
                 const parts = line.split(/[\s,]+/);
                 const name = parts[0];
                 const address = parts.slice(1).join(' ');
                 if (address) {
-                    geocodePromises.push(
-                        geocodeAddress(address, name)
-                            .then(result => {
-                                if (!result) {
-                                    warnings.push(`住所が特定できなかったため、施設名での位置の特定を試みました: ${name}`);
-                                    return geocodeAddress(name, name);
-                                }
-                                return result;
-                            })
-                            .then(result => {
-                                if (!result) {
-                                    errors.push(`住所も施設名も特定できませんでした: ${line}`);
-                                }
-                                return result;
-                            })
-                            .catch(error => {
-                                errors.push(`住所も施設名も特定できませんでした: ${line}`);
-                            })
-                    );
+                    try {
+                        let result = await geocodeAddress(address, name);
+                        if (!result) {
+                            warnings.push(`住所が特定できなかったため、施設名での位置の特定を試みました: ${name}`);
+                            result = await geocodeAddress(name, name);
+                        }
+                        if (!result) {
+                            errors.push(`住所も施設名も特定できませんでした: ${line}`);
+                        } else {
+                            geocodeResults.push(result);
+                        }
+                    } catch (error) {
+                        errors.push(`住所も施設名も特定できませんでした: ${line}`);
+                    }
+                }
+            }
+
+            geocodeResults.forEach(result => {
+                if (result) {
+                    const latlng = [result.lat, result.lon];
+                    const marker = L.marker(latlng).addTo(map)
+                        .bindPopup(`<b>${result.name}</b><br>${result.query}`).openPopup();
                 }
             });
-
-            Promise.allSettled(geocodePromises)
-                .then(results => {
-                    results.forEach(result => {
-                        if (result.status === 'fulfilled' && result.value) {
-                            const latlng = [result.value.lat, result.value.lon];
-                            const marker = L.marker(latlng).addTo(map)
-                                .bindPopup(`<b>${result.value.name}</b><br>${result.value.query}`).openPopup();
-                        }
-                    });
-                    document.getElementById('errors').innerText = errors.join('\n');
-                    document.getElementById('warnings').innerText = warnings.join('\n');
-                })
-                .catch(error => console.error('Error:', error));
+            document.getElementById('errors').innerText = errors.join('\n');
+            document.getElementById('warnings').innerText = warnings.join('\n');
         }
     </script>
 </body>
