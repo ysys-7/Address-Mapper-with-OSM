@@ -691,13 +691,15 @@ copy of the Program in return for a fee.
   </div>
   
     <script>
-        // 先頭の空白行を削除
+        // 先頭の空白を削除
         document.addEventListener("DOMContentLoaded", function() {
             var textarea = document.getElementById("addresses");
             var lines = textarea.value.split("\n");
             for (var i = 0; i < lines.length; i++) {
-                lines[i] = lines[i].replace(/^\t+/, "");
+                lines[i] = lines[i].replace(/^[\t\s]+/, "");
             }
+            // 完全な空白行を削除
+            lines = lines.filter(line => line.trim() !== "");
             textarea.value = lines.join("\n");
         });
 
