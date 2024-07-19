@@ -1,6 +1,6 @@
 # Address Mapper with OSM (AMwO)
 
-Address Mapper with OSM (AMwO)は、OpenStreetMapを利用して住所を地図上にプロットできるウェブベースのツールです。ユーザーフレンドリーで高機能に設計されており、自治体事業や街づくりなど様々な用途に活用できます。AMwOはGNU General Public License v3.0の下で配布されており、自由にカスタマイズが可能です。
+Address Mapper with OSM (AMwO)は、OpenStreetMapを利用して住所を地図上にプロットできるウェブベースのツールです。ユーザーフレンドリーで高機能に設計されており、自治体事業やまちづくりなど様々な用途に活用できます。AMwOはGNU General Public License v3.0の下で配布されており、自由にカスタマイズが可能です。
 
 ## 開発の経緯
 
