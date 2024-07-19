@@ -17,6 +17,7 @@ Address Mapper with OSM (AMwO)は、OpenStreetMapを利用して住所を地図�
 - GNU GPL-3.0ライセンスの下、オープンソースで自由に配布可能
 - 単一HTMLファイルで動作する
 - HTMLファイル内に、事前にリストを埋め込むことが可能
+- Google Analytics のコードを埋め込み(不要な場合はコードを削除してください)
 
 ## とりあえず使ってみる
 
