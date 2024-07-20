@@ -662,6 +662,7 @@ copy of the Program in return for a fee.
         }
         #form {
             margin-bottom: 20px;
+            /* display: none; */  /*事前に施設と住所を埋め込んで入力フォームを非表示にする場合に使用する*/
         }
         #addresses {
             width: 99%;
@@ -678,24 +679,25 @@ copy of the Program in return for a fee.
 </head>
 <body>
     <div id="form">
-        <textarea id="addresses" placeholder="施設名と住所のリストを改行で分けて入力してください（施設名と住所の区切りは半角カンマ、またはタブ） ex:東京都庁,東京都新宿区西新宿２丁目８−１"></textarea><br>
-        <!-- あらかじめ施設と住所をテキストエリアに埋め込むには、上の textarea の中に記述してください -->
+        <textarea id="addresses" placeholder="施設名と住所のリストを改行で分けて入力してください（施設名と住所の区切りは半角カンマ、またはタブ） ex:東京都庁,東京都新宿区西新宿２丁目８−１">
+
+        </textarea><br>
+        <!-- 事前に施設と住所を埋め込むには、上の textarea の中に記述してください -->
         <button onclick="plotAddresses()">地図にプロット</button>
         <button onclick="resetPage()">リセット</button><br>
         CSVインポート(SJISのみ):<input type="file" id="csvFileInput" accept=".csv" />
-        <div id="progress"></div>
-        <div id="errors"></div>
-        <div id="warnings"></div>
     </div>
+    <div id="progress"></div>
+    <div id="errors"></div>
+    <div id="warnings"></div>
     <div id="map"></div>
     
     <div id="footer">
       <div style="text-align: center; padding: 10px; border-top: 1px solid #e7e7e7;">
           Address Mapper with OSM (AMwO) &copy; 2024 Yossy(ysys-7). Distributed under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-3.0 License</a>.
           <br>
-          <a href="https://github.com/ysys-7/Address-Mapper-with-OSM" target="_blank">GitHub Repository</a>
+          Original author: Yossy(ysys-7) <a href="https://github.com/ysys-7/Address-Mapper-with-OSM" target="_blank">GitHub Repository</a>
           <br>
-          Original author: Yossy(ysys-7)
       </div>
   </div>
   
@@ -710,6 +712,12 @@ copy of the Program in return for a fee.
             // 完全な空白行を削除
             lines = lines.filter(line => line.trim() !== "");
             textarea.value = lines.join("\n");
+
+            // リストが空ではない場合に plotAddresses() を呼び出す
+            if (lines.length > 0) {
+                plotAddresses();
+            }
+
         });
 
         // リセット
@@ -815,7 +823,7 @@ copy of the Program in return for a fee.
             });
             document.getElementById('errors').innerText = errors.join('\n');
             document.getElementById('warnings').innerText = warnings.join('\n');
-            document.getElementById('progress').innerText = '完了';
+            document.getElementById('progress').innerText = '';
 
             // 地図の表示範囲をプロットされた地点全体が収まるように調整
             if (latLngBounds.length > 0) {

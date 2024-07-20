@@ -10,7 +10,7 @@
       gtag('js', new Date());
 
       gtag('config', 'G-EBPXPGM9NM');
-    </script>
+    </script>    
     <!--
 
                     GNU GENERAL PUBLIC LICENSE
@@ -662,6 +662,7 @@ copy of the Program in return for a fee.
         }
         #form {
             margin-bottom: 20px;
+            display: none;  /*事前に施設と住所を埋め込んで入力フォームを非表示にする場合に使用する*/
         }
         #addresses {
             width: 99%;
@@ -678,18 +679,7 @@ copy of the Program in return for a fee.
 </head>
 <body>
     <div id="form">
-        <textarea id="addresses" placeholder="施設名と住所のリストを改行で分けて入力してください（施設名と住所の区切りは半角カンマ、またはタブ） ex:東京都庁,東京都新宿区西新宿２丁目８−１">  
-          独立行政法人労働者健康安全機構東北労災病院,仙台市青葉区台原４－３－２１
-          ＪＲ仙台病院,仙台市青葉区五橋１－１－５
-          国立大学法人　東北大学病院,仙台市青葉区星陵町１－１
-          医療法人社団佳留会ごとう整形外科,仙台市青葉区本町２丁目４－８５１０ビル４Ｆ
-          医療法人財団明理会西仙台病院,仙台市青葉区芋沢字新田５４－４
-          医療法人小池クリニック整形外科,仙台市青葉区台原１－７－２４
-          医療法人社団青葉通クリニック,仙台市青葉区一番町３丁目８番地２
-          医療法人社団千葉クリニック,仙台市青葉区三条町１１－２６
-          医療法人社団広安会愛子整形外科,仙台市青葉区愛子東１丁目４－４５
-          医療法人社団曽木会高野原曽木医院,仙台市青葉区高野原４－１０－１４
-          医療法人社団恵泉会南吉成しまむら整形外科,仙台市青葉区南吉成３－１－２３
+        <textarea id="addresses" placeholder="施設名と住所のリストを改行で分けて入力してください（施設名と住所の区切りは半角カンマ、またはタブ） ex:東京都庁,東京都新宿区西新宿２丁目８−１">
           しかない整形外科クリニック,仙台市青葉区中山９－１－３
           地方独立行政法人宮城県立こども病院宮城県立こども病院,仙台市青葉区落合四丁目３番１７号
           くにみ整形外科クリニック,仙台市青葉区国見４丁目２番７号
@@ -697,36 +687,23 @@ copy of the Program in return for a fee.
           さいとう伸整形外科クリニック,仙台市青葉区荒巻本沢３丁目１－１５
           とよま整形外科クリニック,仙台市青葉区五橋１丁目６－６－１Ｆ
           片平丁伊藤整形外科,仙台市青葉区一番町１丁目１５－１５
-          西公園クリニック,仙台市青葉区大町２－１５－２４亀兵ビル１階
-          上杉山整形外科クリニック,仙台市青葉区上杉５丁目８－４０
-          医療法人社団茜会一番町南診療所あかねクリニック,仙台市青葉区北目町３－９３Ｆ
-          瀬上整形外科医院,仙台市青葉区中央２丁目８－３２
-          医療法人悠心会宮町整形外科クリニック,仙台市青葉区宮町４丁目６－１０
-          独立行政法人地域医療機能推進機構仙台病院,仙台市青葉区堤町３丁目１６－１
-          医療法人財団明理会イムス明理会仙台総合病院,仙台市青葉区中央４丁目５－１
-          医療法人聖敬会北仙台はせがわクリニック,仙台市青葉区昭和町４－３－２階
-          医療法人健誠会小倉整形外科,仙台市青葉区上杉１丁目６－１０ＥＡＲＴＨＢＬＵＥ仙台勾当台２階
-          医療法人川又整形外科川又整形外科クリニック,仙台市青葉区一番町３丁目６－１一番町平和ビル５階
-          医療法人社団　台原整形外科,仙台市青葉区台原５丁目１－１９
-          水の森整形外科クリニック,仙台市青葉区水の森３丁目４１－１５　フローラル共済ビル３階
         </textarea><br>
-        <!-- あらかじめ施設と住所をテキストエリアに埋め込むには、上の textarea の中に記述してください -->
+        <!-- 事前に施設と住所を埋め込むには、上の textarea の中に記述してください -->
         <button onclick="plotAddresses()">地図にプロット</button>
         <button onclick="resetPage()">リセット</button><br>
         CSVインポート(SJISのみ):<input type="file" id="csvFileInput" accept=".csv" />
-        <div id="progress"></div>
-        <div id="errors"></div>
-        <div id="warnings"></div>
     </div>
+    <div id="progress"></div>
+    <div id="errors"></div>
+    <div id="warnings"></div>
     <div id="map"></div>
-    
+
     <div id="footer">
       <div style="text-align: center; padding: 10px; border-top: 1px solid #e7e7e7;">
           Address Mapper with OSM (AMwO) &copy; 2024 Yossy(ysys-7). Distributed under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-3.0 License</a>.
           <br>
-          <a href="https://github.com/ysys-7/Address-Mapper-with-OSM" target="_blank">GitHub Repository</a>
+          Original author: Yossy(ysys-7) <a href="https://github.com/ysys-7/Address-Mapper-with-OSM" target="_blank">GitHub Repository</a>
           <br>
-          Original author: Yossy(ysys-7)
       </div>
   </div>
   
@@ -741,7 +718,13 @@ copy of the Program in return for a fee.
             // 完全な空白行を削除
             lines = lines.filter(line => line.trim() !== "");
             textarea.value = lines.join("\n");
-        });
+
+            // リストが空ではない場合に plotAddresses() を呼び出す
+            if (lines.length > 0) {
+                plotAddresses();
+            }
+
+          });
 
         // リセット
         function resetPage() {
@@ -846,7 +829,7 @@ copy of the Program in return for a fee.
             });
             document.getElementById('errors').innerText = errors.join('\n');
             document.getElementById('warnings').innerText = warnings.join('\n');
-            document.getElementById('progress').innerText = '完了';
+            document.getElementById('progress').innerText = '';
 
             // 地図の表示範囲をプロットされた地点全体が収まるように調整
             if (latLngBounds.length > 0) {
