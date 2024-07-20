@@ -86,7 +86,7 @@ A: これはジオコーディングの誤差によるものである可能性�
 本プロジェクト AMwO は、OpenStreetMapおよび地理院のジオコーディングサービスを使用しています。利用規約については、以下のリンクを参照してください。
 
 - [OpenStreetMap](https://wiki.openstreetmap.org/wiki/JA:%E3%82%BF%E3%82%A4%E3%83%AB%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84)
-- [地理院地図利用規約](https://www.OSM.go.jp/kikakuchousei/kikakuchousei40182.html)
+- [地理院地図利用規約](https://maps.gsi.go.jp/help/termsofuse.html)
 
 ## ライセンス
 
