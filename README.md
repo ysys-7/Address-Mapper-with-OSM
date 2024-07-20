@@ -104,4 +104,4 @@ AMwOはGNU General Public License v3.0で配布されています。詳しくは
 
 ## 原作者
 
-Yossy (ysys-7)によって作成されました。詳細はGitHub Repositoryをご覧ください。(https://github.com/ysys-7/Address-Mapper-with-OSM)
+Yossy (ysys-7)によって作成されました。詳細は[GitHub Repository](https://github.com/ysys-7/Address-Mapper-with-OSM)をご覧ください。
