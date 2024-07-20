@@ -1,15 +1,14 @@
-# Address Mapper with OSM (AMwO)
+# Address Mapper with GSI (AMwG)
 
-Address Mapper with OSM (AMwO)は、OpenStreetMapを利用して住所を地図上にプロットできるウェブベースのツールです。ユーザーフレンドリーで高機能に設計されており、自治体事業やまちづくりなど様々な用途に活用できます。AMwOはGNU General Public License v3.0の下で配布されており、自由にカスタマイズが可能です。
+Address Mapper with GSI (AMwG)は、地理院地図を利用して住所を地図上にプロットできるウェブベースのツールです。ユーザーフレンドリーで高機能に設計されており、自治体事業やまちづくりなど様々な用途に活用できます。AMwGはGNU General Public License v3.0の下で配布されており、自由にカスタマイズが可能です。
 
 ## 開発の経緯
 
-厚生労働省のサイトで労災指定医療機関を検索した際、テキストで羅列させるという、とってもユーザーフレンドリーな設計だったので、このツールを作成しました。このツールを使えば、施設名と住所から簡単に地図上にプロットし、視覚的に確認できるようになります。
+厚生労働省のサイトで労災指定医療機関を検索した際、テキストで羅列させるという、とってもユーザーフレンドリーな設計だったので、このツールを作成しました。このツールを使えば、施設名と住所から簡単に地図上にプロットし、視覚的に確認できるようになります。元々はOpenStreetmap対応で開発していましたが、OSMのサーバー負荷を考慮して、地理院地図対応に変更しています。
 
 ## 特徴
 
-- OpenStreetMapを使って複数の住所を地図上にプロット
-- 国土地理院のジオコーディングサービスを使用(サーバーに負荷をかけないようデフォルトでは一件毎に500msの遅延をかけています)
+- 地理院地図とジオコーディングサービスを使用して複数の住所を地図上にプロット(サーバーに負荷をかけないようデフォルトでは一件毎に200msの遅延をかけています)
 - CSVインポート機能（古いバージョンのExcelに対応できるようShift-JISエンコーディングのみ）
 - プロットされたすべての場所に合うように、地図のズームを自動調整
 - シンプルで直感的なユーザーインターフェース
@@ -23,31 +22,31 @@ Address Mapper with OSM (AMwO)は、OpenStreetMapを利用して住所を地図�
 
 以下のリンクを開いてください:
 
-[Address Mapper with OSM](https://ysys-7.github.io/Address-Mapper-with-OSM/AMwO.html)
+[Address Mapper with GSI](https://ysys-7.github.io/Address-Mapper-with-GSI/AMwG.html)
 
 ## リスト埋め込み版のデモ
 
 以下のリンクを開いてください:
 
-[Address Mapper with OSM embedded_demo](https://ysys-7.github.io/Address-Mapper-with-OSM/AMwO_embedded_demo.html)
+[Address Mapper with GSI embedded_demo](https://ysys-7.github.io/Address-Mapper-with-GSI/AMwG_embedded_demo.html)
 
 ## インストール方法
 
-AMwO をローカルで使用するには、以下の手順に従ってください:
+AMwG をローカルで使用するには、以下の手順に従ってください:
 
 1. リポジトリをクローンする:
    
    ```sh
-   git clone https://github.com/ysys-7/Address-Mapper-with-OSM.git
+   git clone https://github.com/ysys-7/Address-Mapper-with-GSI.git
    ```
 
 2. プロジェクト・ディレクトリに移動する:
    
    ```sh
-   cd Address-Mapper-with-OSM
+   cd Address-Mapper-with-GSI
    ```
 
-3. ウェブブラウザで`AMwO.html`を開く。
+3. ウェブブラウザで`AMwG.html`を開く。
 
 ## 使用方法
 
@@ -84,24 +83,24 @@ A: これはジオコーディングの誤差によるものである可能性�
 
 このプロジェクトはオープンソースであり、限られた時間の中で開発されています。バグ報告や機能リクエストについては、以下の方法でコミュニティと交流してください：
 
-**Discussions**: 使用方法についての質問や他のユーザーとの議論を希望する場合は、[GitHub Discussions](https://github.com/ysys-7/Address-Mapper-with-OSM/discussions)をご利用ください。
+**Discussions**: 使用方法についての質問や他のユーザーとの議論を希望する場合は、[GitHub Discussions](https://github.com/ysys-7/Address-Mapper-with-GSI/discussions)をご利用ください。
 
 ## プルリクエスト
 
 - プルリクエストは受け付けていません。これは、開発プロセスを管理しやすくし、私の個人的なスケジュールに合わせてアップデートが行われるようにするためです。
 - 提案やフィードバックがある場合は、「Discussions」タブで意見を交換してください。私はこれを定期的に確認し、将来のアップデートのために検討します。
 
-## OSMとジオコーディングの利用規約
+## 地理院地図の利用規約
 
-本プロジェクト AMwO は、OpenStreetMapおよび国土地理院のジオコーディングサービスを使用しています。利用規約については、以下のリンクを参照してください。
+本プロジェクト AMwG は、地理院地図および国土地理院のジオコーディングサービスを使用しています。利用規約については、以下のリンクを参照してください。
 
-- [OpenStreetMap利用規約](https://openstreetmap.jp/terms_and_privacy)
-- [国土地理院ジオコーディング利用規約](https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html)
+- [国土地理院測量計算API利用規約](https://vldb.gsi.go.jp/sokuchi/surveycalc/agreement.html)
+- 出典：[国土地理院](https://maps.gsi.go.jp)
 
 ## ライセンス
 
-AMwOはGNU General Public License v3.0で配布されています。詳しくはLICENSEファイルをご覧ください。
+AMwGはGNU General Public License v3.0で配布されています。詳しくはLICENSEファイルをご覧ください。
 
 ## 原作者
 
-Yossy (ysys-7)によって作成されました。詳細は[GitHub Repository](https://github.com/ysys-7/Address-Mapper-with-OSM)をご覧ください。
+Yossy (ysys-7)によって作成されました。詳細は[GitHub Repository](https://github.com/ysys-7/Address-Mapper-with-GSI)をご覧ください。

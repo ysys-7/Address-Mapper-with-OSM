@@ -769,7 +769,7 @@ copy of the Program in return for a fee.
         // 国土地理院ジオコーディング
         async function geocodeAddress(query, name) {
             const url = `https://msearch.gsi.go.jp/address-search/AddressSearch?q=${encodeURIComponent(query)}`;
-            await delay(500);  // サーバー負荷制限
+            await delay(200);  // サーバー負荷制限
             return fetch(url)
                 .then(response => response.json())
                 .then(data => {
