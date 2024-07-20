@@ -27,7 +27,7 @@ Address Mapper with OSM (AMwO)は、OpenStreetMapを利用して住所を地図�
 
 ## リスト埋め込み版のデモ
 
-[Address Mapper with OSM](https://ysys-7.github.io/Address-Mapper-with-OSM/AMwO_embedded_demo.html)
+[Address Mapper with OSM embedded_demo](https://ysys-7.github.io/Address-Mapper-with-OSM/AMwO_embedded_demo.html)
 
 ## インストール方法
 
