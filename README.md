@@ -95,7 +95,7 @@ A: これはジオコーディングの誤差によるものである可能性�
 本プロジェクト AMwG は、地理院地図および国土地理院のジオコーディングサービスを使用しています。利用規約については、以下のリンクを参照してください。
 
 - [地理院地図利用規約](https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html)
-- 出典：[国土地理院](https://maps.gsi.go.jp)
+- 出典：[地理院地図](https://maps.gsi.go.jp)
 
 ## ライセンス
 
