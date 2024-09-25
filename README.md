@@ -94,4 +94,4 @@ AMwOはMIT Licenseで配布されています。詳しくはLICENSEファイル�
 
 ## 原作者
 
-Yossy (ysys-7)によって作成されました。詳細は[GitHub Repository](https://github.com/ysys-7/Address-Mapper-with-OSM)をご覧ください。
+ysysによって作成されました。詳細は[GitHub Repository](https://github.com/ysys-7/Address-Mapper-with-OSM)をご覧ください。
